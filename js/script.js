@@ -19,7 +19,24 @@ $(document).ready(function () {
       language: 'it-IT',
       },
       success: function (risposta) {
-        console.log(risposta.results[0].original_title);
+        var source = document.getElementById("films-template").innerHTML;
+        var template = Handlebars.compile(source);
+        for (var i = 0; i < risposta.results.length; i++) {
+          // console.log(risposta.results[i].original_title);
+          // console.log(risposta.results[i].title);
+          // console.log(risposta.results[i].original_language);
+          // console.log(risposta.results[i].vote_average);
+          var context = {
+            title: risposta.results[i].title,
+            original_title: risposta.results[i].original_title,
+            original_language: risposta.results[i].original_language,
+            vote_average: risposta.results[i].vote_average
+           };
+           var html = template(context);
+           $('.container').append(html);
+
+        }
+
       },
       error: function (request, state, errors) {
         console.log(errors);
