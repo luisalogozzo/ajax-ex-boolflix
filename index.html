@@ -6,26 +6,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://momentjs.com/downloads/moment.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
     <link rel="stylesheet" href="css/style.css">
 
     <title></title>
   </head>
   <body>
-
-    <div class="container">
-      <input id="insert-film-name" type="text" name="" value="" placeholder="Inserisci il titolo di un film">
-    </div>
+    <input id="insert-film-name" type="text" name="" value="" placeholder="Inserisci il titolo di un film">
     <button id="search" type="button" name="button">Search</button>
 
 
+    <div class="container">
+    </div>
+    <div class="container-series">
+    </div>
+
 
     <script id="films-template" type="text/x-handlebars-template">
-      <div class="film">
-        <h2 id="title">{{title}}</h2>
-        <h3 id="original_title">{{original_title}}</h3>
-        <span>Original language: {{original_language}}</span>
-        <span>Vote Average: {{vote_average}}</span>
+      <div class="{{filmseries}} filmseries">
+        <img src="http://image.tmdb.org/t/p/w185{{poster_path}}" alt="">
+        <h2 id="title">{{title}}{{name}}</h2>
+        <h3 id="original_title">{{original_title}}{{original_name}}</h3>
+        <div>Original language: <img class="flag" src="img/{{language}}.png" alt="{{language}}"></div>
+        <div id="vote">Vote Average: <span class="yellow">{{{vote_average}}}</span></div>
+
+
       </div>
 
 
