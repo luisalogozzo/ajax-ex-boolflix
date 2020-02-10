@@ -16,21 +16,34 @@ body {
 
 .list-unstyled {
   list-style: none;
-  display: inline;
+}
+
+.list-unstyled li {
+  display: inline-block;
 }
 
 .filmseries {
-  width: calc(100% / 5);
-  margin: 5px;
-  padding: 5px;
-  border-radius: 10px;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.1);;
+  position: relative;
+  width: 355px;
+  height: 513px;
 
+  /* margin: 5px;
+  padding: 5px; */
+  border-radius: 10px;
+  /* text-align: center; */
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.film {
+.filmseries .poster {
+  width: 355px;;
+  height: 513px;
+}
 
+.retrocard {
+padding: 10px;
+position: absolute;
+top: 0;
+left: 0;
 }
 
 .series {
@@ -44,4 +57,8 @@ body {
 
 .yellow{
   color: yellow;
+}
+
+.display-none {
+  display: none;
 }

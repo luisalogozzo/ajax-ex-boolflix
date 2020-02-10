@@ -31,16 +31,17 @@
 
 
     <script id="films-template" type="text/x-handlebars-template">
-      <li class="{{filmseries}} filmseries">
-        <img src="http://image.tmdb.org/t/p/w185{{poster_path}}" alt="">
-        <h2 id="title">{{title}}{{name}}</h2>
-        <h3 id="original_title">{{original_title}}{{original_name}}</h3>
-        <div>Original language: <img class="flag" src="img/{{language}}.png" alt="{{language}}"></div>
-        <div id="vote">Vote Average: <span class="yellow">{{{vote_average}}}</span></div>
-
-
+      <li>
+      <div class="{{filmseries}} filmseries">
+        <img class="poster" src="http://image.tmdb.org/t/p/w342{{poster_path}}" alt="">
+        <div class="retrocard display-none">
+          <h2 id="title">{{title}}{{name}}</h2>
+          <h3 id="original_title">{{original_title}}{{original_name}}</h3>
+          <div>Original language: <img class="flag" src="img/{{language}}.png" alt="{{language}}"></div>
+          <div id="vote">Vote Average: <span class="yellow">{{{vote_average}}}</span></div>
+        </div>
+      </div>
       </li>
-
 
     </script>
 

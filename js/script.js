@@ -20,11 +20,32 @@ $(document).ready(function () {
     // printSeries(InsertedFilm);
   });
 
+//   $('.poster').hover (
+//     function(event) {
+//     $(event.target).hide();
+//     $('.retrocard').removeClass('display-none');
+//   }, function(event) {
+//     $(event.target).show();
+//     $('.retrocard').addClass('display-none');
+//   }
+// );
+$('.retrocard').hide();
+$(document).on('mouseenter','.poster', function () {
+    $( this ).hide();
+    $(this).siblings('.retrocard').show();
+
+}).on('mouseleave','.poster',  function(){
+    $( this ).show();
+    $('.retrocard').hide();
+});
+
+
+
 });
 
 function printFilms(InsertedFilm) {
   $('#insert-film-name').val('');
-  $('.container-film').html('');
+  $('.container-film > ul').html('');
   $.ajax({
     url: 'https://api.themoviedb.org/3/search/movie',
     method: 'GET',
