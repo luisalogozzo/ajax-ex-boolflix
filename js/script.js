@@ -10,14 +10,14 @@ $(document).ready(function () {
    if (event.which == 13) {
      var InsertedFilm = $('#insert-film-name').val();
      printFilms(InsertedFilm);
-     printSeries(InsertedFilm);
+     // printSeries(InsertedFilm);
    }
   });
 
   $(document).on('click', '#search', function() {
     var InsertedFilm = $('#insert-film-name').val();
     printFilms(InsertedFilm);
-    printSeries(InsertedFilm);
+    // printSeries(InsertedFilm);
   });
 
 });
@@ -49,8 +49,8 @@ function printFilms(InsertedFilm) {
           language: risposta.results[i].original_language,
           vote_average: printStars(filmVoteTo5),
          };
-         var html = template(context);
-         $('.container').append(html);
+         var htmlFilm = template(context);
+         $('.container ul').append(htmlFilm);
       }
     },
     error: function (request, state, errors) {

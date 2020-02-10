@@ -18,13 +18,18 @@
 
 
     <div class="container">
+      <ul class="film-list list-unstyled">
+
+      </ul>
     </div>
-    <div class="container-series">
-    </div>
+
+    <!-- <div class="container-series">
+
+    </div> -->
 
 
     <script id="films-template" type="text/x-handlebars-template">
-      <div class="{{filmseries}} filmseries">
+      <li class="{{filmseries}} filmseries">
         <img src="http://image.tmdb.org/t/p/w185{{poster_path}}" alt="">
         <h2 id="title">{{title}}{{name}}</h2>
         <h3 id="original_title">{{original_title}}{{original_name}}</h3>
@@ -32,7 +37,7 @@
         <div id="vote">Vote Average: <span class="yellow">{{{vote_average}}}</span></div>
 
 
-      </div>
+      </li>
 
 
     </script>
