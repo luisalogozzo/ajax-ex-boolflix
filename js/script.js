@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 function printFilms(InsertedFilm) {
   $('#insert-film-name').val('');
-  $('.container').html('');
+  $('.container-film').html('');
   $.ajax({
     url: 'https://api.themoviedb.org/3/search/movie',
     method: 'GET',
@@ -49,8 +49,8 @@ function printFilms(InsertedFilm) {
           language: risposta.results[i].original_language,
           vote_average: printStars(filmVoteTo5),
          };
-         var htmlFilm = template(context);
-         $('.container ul').append(htmlFilm);
+         var html = template(context);
+         $('.container-film ul').append(html);
       }
     },
     error: function (request, state, errors) {
@@ -86,7 +86,7 @@ function printSeries(InsertedFilm) {
           vote_average: printStars(filmVoteTo5),
          };
          var html = template(context);
-         $('.container-series').append(html);
+         $('.container-series ul').append(html);
       }
     },
     error: function (request, state, errors) {
@@ -99,34 +99,14 @@ function printSeries(InsertedFilm) {
 
 
 function printStars (vote) {
-  // switch (vote) {
-  //   case 0 :
-  //   star = '&#9734;&#9734;&#9734;&#9734;&#9734;';
-  //     break;
-  //   case 1 :
-  //   star = '&#9733;&#9734;&#9734;&#9734;&#9734;';
-  //     break;
-  //   case 2 :
-  //   star = '&#9733;&#9733;&#9734;&#9734;&#9734;';
-  //     break;
-  //   case 3 :
-  //   star = '&#9733;&#9733;&#9733;&#9734;&#9734;';
-  //     break;
-  //   case 4 :
-  //   star = '&#9733;&#9733;&#9733;&#9733;&#9734;';
-  //     break;
-  //   default:
-  //   star = '&#9733;&#9733;&#9733;&#9733;&#9733;';
-  // }
   var star = '';
 
-  for (var i = 0; i < vote; i++) {
-  star += '&#9733;';
-
+for (var i = 0; i < 5; i++) {
+  if (i < vote) {
+    star += '&#9733;';
+  } else if (i >= vote && i < 5) {
+    star += '&#9734;';
   }
-  for (var i = vote; i < 5; i++) {
-  star += '&#9734;';
-  }
-  console.log(star);
-  return star;
+}
+return star;
 }
