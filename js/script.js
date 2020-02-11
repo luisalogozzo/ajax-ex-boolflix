@@ -20,21 +20,23 @@ $(document).ready(function () {
     // printSeries(InsertedFilm);
   });
 
-//   $('.poster').hover (
+
+  $('.retrocard').hide();
+
+// $(document).on('hover','.poster',
 //     function(event) {
-//     $(event.target).hide();
-//     $('.retrocard').removeClass('display-none');
+//       $(event.target ).hide();
+//       $(event.target).siblings('.retrocard').show();
 //   }, function(event) {
-//     $(event.target).show();
-//     $('.retrocard').addClass('display-none');
+//       $( event.target ).show();
+//       $('.retrocard').hide();
 //   }
 // );
-$('.retrocard').hide();
-$(document).on('mouseenter','.poster', function () {
+$(document).on('mouseenter','.filmseries .poster', function () {
     $( this ).hide();
     $(this).siblings('.retrocard').show();
 
-}).on('mouseleave','.poster',  function(){
+}).on('mouseleave','.filmseries .poster',  function(){
     $( this ).show();
     $('.retrocard').hide();
 });
