@@ -4,13 +4,29 @@ body {
   background-color: black;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+  border-bottom: 1px solid white;
+}
+
+h1,
+#search {
+  color: red;
+  font-weight: 900;
+  margin-left: 10px;
+}
+
+input {
+  border-radius: 5px;
+  width: 200px;
+}
+
 .container-film ,
 .container-series {
   width: 100%;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* flex-wrap: wrap; */
-  /* overflow: auto; */
   margin-bottom: 100px;
 }
 
@@ -28,8 +44,7 @@ body {
   min-height: 510px;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid white;
-
+  /* border: 1px solid white; */
 }
 
 .filmseries .poster {
@@ -43,12 +58,10 @@ body {
 }
 
 .retrocard {
-
 padding: 10px;
 position: absolute;
 top: 0;
 left: 0;
-
 }
 
 .flag {
