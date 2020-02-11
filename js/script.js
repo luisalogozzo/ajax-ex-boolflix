@@ -23,23 +23,13 @@ $(document).ready(function () {
 
   $('.retrocard').hide();
 
-// $(document).on('hover','.poster',
-//     function(event) {
-//       $(event.target ).hide();
-//       $(event.target).siblings('.retrocard').show();
-//   }, function(event) {
-//       $( event.target ).show();
-//       $('.retrocard').hide();
-//   }
-// );
-$(document).on('mouseenter','.filmseries .poster', function () {
-    $( this ).hide();
-    $(this).siblings('.retrocard').show();
-
-}).on('mouseleave','.filmseries .poster',  function(){
-    $( this ).show();
-    $('.retrocard').hide();
-});
+  $(document).on('mouseenter','.filmseries .poster', function () {
+      $( this ).removeClass('z-index-1');
+      $( this ).hide();
+  }).on('mouseleave','.filmseries',  function(){
+      $( this ).find('.poster').addClass('z-index-1');
+      $( this ).find('.poster').show();
+  });
 
 
 
