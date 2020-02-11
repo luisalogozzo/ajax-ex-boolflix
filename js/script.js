@@ -61,6 +61,7 @@ function printFilms(InsertedFilm) {
           original_title: risposta.results[i].original_title,
           language: risposta.results[i].original_language,
           vote_average: printStars(filmVoteTo5),
+          overview: risposta.results[i].overview,
          };
          var html = template(context);
          $('.container-film ul').append(html);
