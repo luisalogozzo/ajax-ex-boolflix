@@ -39,15 +39,16 @@
 
     <script id="films-template" type="text/x-handlebars-template">
       <li>
-      <div class="{{filmseries}} filmseries">
+      <div class="{{filmseries}} filmseries" data-id="{{movieId}}">
         <img class="poster z-index-1" src="http://image.tmdb.org/t/p/w342{{poster_path}}" alt="">
         <div class="retrocard">
-          <h2 id="title">{{title}}{{name}}</h2>
-          <h3 id="original_title">{{original_title}}{{original_name}}</h3>
+          <h2 class="title">{{title}}{{name}}</h2>
+          <h3 class="original_title">{{original_title}}{{original_name}}</h3>
           <div>Original language: <img class="flag" src="img/{{language}}.png" alt="{{language}}"></div>
-          <div id="vote">Vote Average: <span class="yellow">{{{vote_average}}}</span></div>
-          <div id="cast">Cast:{{cast}}</div>
-          <div id="overview">{{overview}}</div>
+          <div class="vote">Vote Average: <span class="yellow">{{{vote_average}}}</span></div>
+          <div class="cast-wrap">Cast: <span class="cast"></span>  </div>
+          <br>
+          <div class="overview">{{overview}}</div>
         </div>
       </div>
       </li>

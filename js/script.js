@@ -29,6 +29,7 @@ $(document).ready(function () {
       $( this ).find('.poster').show();
   });
 
+
 });
 
 function printMovieTv(InsertedFilm, url, container) {
@@ -65,10 +66,11 @@ function printMovieTv(InsertedFilm, url, container) {
           original_name: ThisResults.original_name,
           vote_average: printStars(filmVoteTo5),
           overview: ThisResults.overview,
-          cast: SearchActors(movieId),
+          movieId: movieId
          };
          var html = template(context);
          $(container).append(html);
+         SearchActors(movieId);
       }
     },
     error: function (request, state, errors) {
@@ -88,9 +90,7 @@ for (var i = 0; i < 5; i++) {
 }
 return star;
 }
-
 function SearchActors(movieId) {
-  var Cast = '';
   $.ajax({
     url: 'https://api.themoviedb.org/3/movie/' + movieId + '/credits',
     method: 'GET',
@@ -98,14 +98,26 @@ function SearchActors(movieId) {
     api_key: '25046906a5edc120a00e8cdb72843203',
     },
     success: function (risposta) {
-      for (var i = 0; i < risposta.cast.length; i++) {
-      Cast = risposta.cast[i].name;
-      console.log(Cast);
-    }
+      var Cast = '';
+      var i = 0;
+
+      while(i < 5 && i < risposta.cast.length) {
+
+        if (i < 4 && i < risposta.cast.length - 1) {
+          Cast += risposta.cast[i].name + ', ';
+        } else if (risposta.cast.length == 0) {
+          console.log('ciao');
+          $('[data-id="'+ movieId +'"]').find('.cast-wrap').html(' ');
+        } else {
+          Cast += risposta.cast[i].name;
+        }
+
+        i++;
+      }
+      $('[data-id="'+ movieId +'"]').find('.cast').html(Cast);
     },
     error: function (errors) {
       console.log(errors);
     }
   });
- setTimeout(function(){ return Cast; }, 500);
 }
