@@ -3,6 +3,8 @@ $(document).ready(function () {
   var ContainerMovie = '.container-film > ul';
   var UrlSeries = 'https://api.themoviedb.org/3/search/tv';
   var ContainerSeries = '.container-series > ul';
+  $('.film').hide();
+  $('.serie').hide();
 
 
 // CERCA CON TASTIERA//////////////////////
@@ -56,7 +58,6 @@ function printMovieTv(InsertedFilm, url, container) {
       for (var i = 0; i < risposta.results.length; i++) {
         ThisResults = risposta.results[i];
         movieId = ThisResults.id;
-        console.log(movieId);
         var context = {
           poster_path: printPoster(ThisResults.poster_path),
           title: ThisResults.title,
@@ -71,6 +72,8 @@ function printMovieTv(InsertedFilm, url, container) {
          var html = template(context);
          $(container).append(html);
          SearchActors(movieId);
+         $('.film').show();
+         $('.serie').show();
       }
     },
     error: function (request, state, errors) {

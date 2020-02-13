@@ -26,7 +26,8 @@ input {
 
 .container-film ,
 .container-series {
-  width: 100%;
+  width: 95%;
+  margin: auto;
   margin-bottom: 100px;
 }
 
@@ -36,6 +37,12 @@ input {
 
 .list-unstyled li {
   display: inline-block;
+}
+
+.film,
+.serie {
+  text-align: center;
+  font-size: 40px;
 }
 
 .filmseries {
