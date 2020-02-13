@@ -39,8 +39,9 @@
 
     <script id="films-template" type="text/x-handlebars-template">
       <li>
-      <div class="{{filmseries}} filmseries" data-id="{{movieId}}">
-        <img class="poster z-index-1" src="http://image.tmdb.org/t/p/w342{{poster_path}}" alt="">
+      <div class="filmseries" data-id="{{movieId}}">
+        <img class="poster z-index-1" src="{{poster_path}}" alt="">
+        <!-- <img class="background z-index-1" src="img/background.jpg" alt=""> -->
         <div class="retrocard">
           <h2 class="title">{{title}}{{name}}</h2>
           <h3 class="original_title">{{original_title}}{{original_name}}</h3>

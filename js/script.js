@@ -5,6 +5,7 @@ $(document).ready(function () {
   var ContainerSeries = '.container-series > ul';
 
 
+// CERCA CON TASTIERA//////////////////////
   $( "#insert-film-name").keyup(function() {
    if (event.which == 13) {
      var InsertedFilm = $('#insert-film-name').val();
@@ -13,6 +14,7 @@ $(document).ready(function () {
    }
   });
 
+  // CLICK SUL CERCA//////////////////////////////
   $(document).on('click', '#search', function() {
     var InsertedFilm = $('#insert-film-name').val();
     printMovieTv(InsertedFilm, UrlMovie, ContainerMovie);
@@ -20,6 +22,7 @@ $(document).ready(function () {
   });
 
 
+// HOVER SU FILM E SERIE///////////////////////////
   $('.retrocard').hide();
   $(document).on('mouseenter','.filmseries .poster', function () {
       $( this ).removeClass('z-index-1');
@@ -32,6 +35,8 @@ $(document).ready(function () {
 
 });
 
+
+// FUNZIONE STAMPA FILM E SERIE//////////////////////
 function printMovieTv(InsertedFilm, url, container) {
   $('#insert-film-name').val('');
   $(container).html('');
@@ -46,25 +51,20 @@ function printMovieTv(InsertedFilm, url, container) {
     success: function (risposta) {
       var source = document.getElementById("films-template").innerHTML;
       var template = Handlebars.compile(source);
-      var filmVote;
-      var filmVoteTo5;
       var movieId;
       var ThisResults;
       for (var i = 0; i < risposta.results.length; i++) {
         ThisResults = risposta.results[i];
         movieId = ThisResults.id;
         console.log(movieId);
-        filmVote = parseInt(ThisResults.vote_average) / 2;
-        filmVoteTo5 = Math.ceil(filmVote);
         var context = {
-          poster_path: ThisResults.poster_path,
-          // filmseries: 'film',
+          poster_path: printPoster(ThisResults.poster_path),
           title: ThisResults.title,
           original_title: ThisResults.original_title,
           language: ThisResults.original_language,
           name: ThisResults.name,
           original_name: ThisResults.original_name,
-          vote_average: printStars(filmVoteTo5),
+          vote_average: printStars(ThisResults),
           overview: ThisResults.overview,
           movieId: movieId
          };
@@ -78,18 +78,34 @@ function printMovieTv(InsertedFilm, url, container) {
     }
   });
 }
-function printStars (vote) {
-  var star = '';
 
-for (var i = 0; i < 5; i++) {
-  if (i < vote) {
-    star += '&#9733;';
-  } else if (i >= vote && i < 5) {
-    star += '&#9734;';
+// FUNZIONE STAMPA POSTER///////////////////////////
+function printPoster(path) {
+  var urlPoster = '';
+  var urlImg = "https://image.tmdb.org/t/p/w342/";
+  if (path == null) {
+    urlPoster = "img/background.jpg";
+  } else {
+    urlPoster = urlImg + path;
   }
+  return urlPoster;
 }
-return star;
+
+// FUNZIONE STAMPA STELLE VOTO/////////////////////
+function printStars (risultati) {
+  var filmVote = Math.ceil(parseInt(risultati.vote_average) / 2);
+  var star = '';
+  for (var i = 0; i < 5; i++) {
+    if (i < filmVote) {
+      star += '&#9733;';
+    } else if (i >= filmVote && i < 5) {
+      star += '&#9734;';
+    }
+  }
+  return star;
 }
+
+// FUNZIONE RICERCA ATTORI////////////////////////
 function SearchActors(movieId) {
   $.ajax({
     url: 'https://api.themoviedb.org/3/movie/' + movieId + '/credits',
@@ -105,14 +121,13 @@ function SearchActors(movieId) {
 
         if (i < 4 && i < risposta.cast.length - 1) {
           Cast += risposta.cast[i].name + ', ';
-        } else if (risposta.cast.length == 0) {
-          console.log('ciao');
-          $('[data-id="'+ movieId +'"]').find('.cast-wrap').html(' ');
         } else {
           Cast += risposta.cast[i].name;
         }
-
         i++;
+      }
+      if (risposta.cast.length == 0) {
+        $('[data-id="'+ movieId +'"]').find('.cast-wrap').html(' ');
       }
       $('[data-id="'+ movieId +'"]').find('.cast').html(Cast);
     },
